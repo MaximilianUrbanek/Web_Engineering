@@ -21,7 +21,7 @@ header {
     text-shadow: rgb(180, 180, 180) 3px 2px 0;
 }
 
-#months {
+select {
     background-color: rgb(180, 180, 180);
     height: 30px;
     width: 125px;
