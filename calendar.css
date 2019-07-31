@@ -43,7 +43,7 @@ select {
 }
 
 #days li {
-    height: 60px;
+    height: 70px;
     background-color: rgb(180, 180, 180);
     margin: 2px;
     border: 1px solid  rgb(61, 61, 61);
