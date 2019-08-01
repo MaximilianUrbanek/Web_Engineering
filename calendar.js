@@ -31,6 +31,7 @@ function dayclick(day) {
 
     document.getElementById("chheading").innerHTML = "Events on " + month + " " + day + ", " + year + ":";
     document.getElementById("changeback").style.visibility = "visible";
+    document.getElementById("changebody").innerHTML = "<div id='changebtns'><button id='addevent' onclick='addevent()'>Add new Event</button></div>"
 }
 
 function changeback() {
@@ -40,4 +41,9 @@ function changeback() {
     }
     document.getElementById("chheading").innerHTML = "Future Events";
     document.getElementById("changeback").style.visibility = "hidden";
+    document.getElementById("changebody").innerHTML = "<ul id='allevents'><li>new Event 1</li></ul>"
+}
+
+function addevent() {
+    document.getElementById("changebody").innerHTML = "<ul id='neweventform'><li><input type='text' placeholder='Event Title'></li><li><input type='text' placeholder='Location'></li><li><input type='text' placeholder='Organizer'></li><li>Start time: <input type='time' value='08:00'></li><li>End time: <input type='time' value='09:00'</li></ul>"
 }
