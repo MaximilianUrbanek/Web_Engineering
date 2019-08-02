@@ -1,7 +1,9 @@
 <html>
     <head>
         <title>Calendar</title>
+        
         <link rel="stylesheet" type="text/css" href="calendar.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     </head>
     <body>
 
@@ -73,15 +75,16 @@
                 </ul> 
             </div>
             
-            <div id="change">
-                <div id="changehead">
+            <div id="changebox">
+                <div id="change">
                     <p id="chheading">FUTURE EVENTS</p>
-                    <button id="changeback" onclick="changeback()">Back</button>
+                    <div id="changebody">
+                        <ul id="allevents">
+                            <li>new Event 1</li>
+                        </ul>
+                    </div>
                 </div>
-                <div id="changebody">
-                    <ul id="allevents">
-                        <li>new Event 1</li>
-                    </ul>
+                <div id="changebtns">
                 </div>
             </div>
         </div>

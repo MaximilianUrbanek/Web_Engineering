@@ -30,11 +30,11 @@ function dayclick(day) {
     document.getElementById(day).style.backgroundColor = "rgb(132,89,107)";
 
     document.getElementById("chheading").innerHTML = "Events on " + month + " " + day + ", " + year + ":";
-    document.getElementById("changeback").style.visibility = "visible";
-    document.getElementById("changebody").innerHTML = "<div id='changebtns'><button id='addevent' onclick='addevent()'>Add new Event</button></div>"
+    document.getElementById("changebtns").innerHTML = "<button id='changeback' onclick='changebackall()' class='fas fa-angle-left'></button>";
+    document.getElementById("changebody").innerHTML = "<div id='changebtns'><button id='addevent' onclick='addevent()'>Add new Event</button></div>";
 }
 
-function changeback() {
+function changebackall() {
     var listel = document.getElementById("days").getElementsByTagName("LI");
     for (var i = 0; i < listel.length; i++) {
         listel[i].style.backgroundColor = "rgb(187, 164, 174)";
@@ -45,5 +45,5 @@ function changeback() {
 }
 
 function addevent() {
-    document.getElementById("changebody").innerHTML = "<ul id='neweventform'><li><input type='text' placeholder='Event Title'></li><li><input type='text' placeholder='Location'></li><li><input type='text' placeholder='Organizer'></li><li>Start time: <input type='time' value='08:00'></li><li>End time: <input type='time' value='09:00'</li></ul>"
+    document.getElementById("changebody").innerHTML = "<ul id='neweventform'><li><input type='text' placeholder='Event Title' class='eventinput'></li><li><input type='text' placeholder='Location' class='eventinput'></li><li><input type='text' placeholder='Organizer' class='eventinput'></li><li>Start time: <input type='time' value='08:00'></li><li>End time: <input type='time' value='09:00'</li><li>All day event? <input type='checkbox'></li><li><select><option>Busy</option><option>Free</option></select></li><li><input type='text' placeholder='Webpage' class='eventinput'></li><li><input type='text' placeholder='Image-url' class='eventinput'></li><button id='addeventsubmit' >Submit</button></ul>"
 }
