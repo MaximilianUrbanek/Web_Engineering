@@ -1,100 +1,100 @@
 <html>
 
 <head>
-    <title>Calendar</title>
+  <title>Calendar</title>
 
-    <link rel="stylesheet" type="text/css" href="calendar.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
-        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="calendar.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+    integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 </head>
 
 <body>
 
-    <header>Calendar</header>
+  <header>Calendar</header>
 
-    <select id="months" onchange="updateView()">
-        <option value="January">January</option>
-        <option value="February">February</option>
-        <option value="March">March</option>
-        <option value="April">April</option>
-        <option value="May">May</option>
-        <option value="June">June</option>
-        <option value="July">July</option>
-        <option value="August">August</option>
-        <option value="September">September</option>
-        <option value="October">October</option>
-        <option value="November">November</option>
-        <option value="December">December</option>
-    </select>
+  <select id="months" onchange="updateView()">
+    <option value="January">January</option>
+    <option value="February">February</option>
+    <option value="March">March</option>
+    <option value="April">April</option>
+    <option value="May">May</option>
+    <option value="June">June</option>
+    <option value="July">July</option>
+    <option value="August">August</option>
+    <option value="September">September</option>
+    <option value="October">October</option>
+    <option value="November">November</option>
+    <option value="December">December</option>
+  </select>
 
-    <select id="years" onchange="updateView()">
-        <option value="2020">2020</option>
-        <option value="2021">2021</option>
-        <option value="2022">2022</option>
-        <option value="2023">2023</option>
-        <option value="2024">2024</option>
-        <option value="2025">2025</option>
-        <option value="2026">2026</option>
-        <option value="2027">2027</option>
-        <option value="2028">2028</option>
-        <option value="2029">2029</option>
-        <option value="2030">2030</option>
-    </select>
+  <select id="years" onchange="updateView()">
+    <option value="2020">2020</option>
+    <option value="2021">2021</option>
+    <option value="2022">2022</option>
+    <option value="2023">2023</option>
+    <option value="2024">2024</option>
+    <option value="2025">2025</option>
+    <option value="2026">2026</option>
+    <option value="2027">2027</option>
+    <option value="2028">2028</option>
+    <option value="2029">2029</option>
+    <option value="2030">2030</option>
+  </select>
 
-    <div id="all">
-        <div id="fullview">
-            <ul id="days">
-                <li id="1" onclick="dayclick(id)">1</li>
-                <li id="2" onclick="dayclick(id)">2</li>
-                <li id="3" onclick="dayclick(id)">3</li>
-                <li id="4" onclick="dayclick(id)">4</li>
-                <li id="5" onclick="dayclick(id)">5</li>
-                <li id="6" onclick="dayclick(id)">6</li>
-                <li id="7" onclick="dayclick(id)">7</li>
-                <li id="8" onclick="dayclick(id)">8</li>
-                <li id="9" onclick="dayclick(id)">9</li>
-                <li id="10" onclick="dayclick(id)">10</li>
-                <li id="11" onclick="dayclick(id)">11</li>
-                <li id="12" onclick="dayclick(id)">12</li>
-                <li id="13" onclick="dayclick(id)">13</li>
-                <li id="14" onclick="dayclick(id)">14</li>
-                <li id="15" onclick="dayclick(id)">15</li>
-                <li id="16" onclick="dayclick(id)">16</li>
-                <li id="17" onclick="dayclick(id)">17</li>
-                <li id="18" onclick="dayclick(id)">18</li>
-                <li id="19" onclick="dayclick(id)">19</li>
-                <li id="20" onclick="dayclick(id)">20</li>
-                <li id="21" onclick="dayclick(id)">21</li>
-                <li id="22" onclick="dayclick(id)">22</li>
-                <li id="23" onclick="dayclick(id)">23</li>
-                <li id="24" onclick="dayclick(id)">24</li>
-                <li id="25" onclick="dayclick(id)">25</li>
-                <li id="26" onclick="dayclick(id)">26</li>
-                <li id="27" onclick="dayclick(id)">27</li>
-                <li id="28" onclick="dayclick(id)">28</li>
-                <li id="29" onclick="dayclick(id)">29</li>
-                <li id="30" onclick="dayclick(id)">30</li>
-                <li id="31" onclick="dayclick(id)">31</li>
-            </ul>
-        </div>
-
-        <div id="changebox">
-            <div id="change">
-                <p id="chheading">FUTURE EVENTS</p>
-                <div id="changebody">
-                    <ul id="allevents">
-                        <li>new Event 1</li>
-                    </ul>
-                </div>
-            </div>
-            <div id="changebtns">
-            </div>
-        </div>
+  <div id="all">
+    <div id="fullview">
+      <ul id="days">
+        <li id="1" onclick="dayclick(id)">1</li>
+        <li id="2" onclick="dayclick(id)">2</li>
+        <li id="3" onclick="dayclick(id)">3</li>
+        <li id="4" onclick="dayclick(id)">4</li>
+        <li id="5" onclick="dayclick(id)">5</li>
+        <li id="6" onclick="dayclick(id)">6</li>
+        <li id="7" onclick="dayclick(id)">7</li>
+        <li id="8" onclick="dayclick(id)">8</li>
+        <li id="9" onclick="dayclick(id)">9</li>
+        <li id="10" onclick="dayclick(id)">10</li>
+        <li id="11" onclick="dayclick(id)">11</li>
+        <li id="12" onclick="dayclick(id)">12</li>
+        <li id="13" onclick="dayclick(id)">13</li>
+        <li id="14" onclick="dayclick(id)">14</li>
+        <li id="15" onclick="dayclick(id)">15</li>
+        <li id="16" onclick="dayclick(id)">16</li>
+        <li id="17" onclick="dayclick(id)">17</li>
+        <li id="18" onclick="dayclick(id)">18</li>
+        <li id="19" onclick="dayclick(id)">19</li>
+        <li id="20" onclick="dayclick(id)">20</li>
+        <li id="21" onclick="dayclick(id)">21</li>
+        <li id="22" onclick="dayclick(id)">22</li>
+        <li id="23" onclick="dayclick(id)">23</li>
+        <li id="24" onclick="dayclick(id)">24</li>
+        <li id="25" onclick="dayclick(id)">25</li>
+        <li id="26" onclick="dayclick(id)">26</li>
+        <li id="27" onclick="dayclick(id)">27</li>
+        <li id="28" onclick="dayclick(id)">28</li>
+        <li id="29" onclick="dayclick(id)">29</li>
+        <li id="30" onclick="dayclick(id)">30</li>
+        <li id="31" onclick="dayclick(id)">31</li>
+      </ul>
     </div>
 
-    <script src="j-query.js"></script>
-    <script src="ajax.js"></script>
-    <script src="calendar.js"></script>
+    <div id="changebox">
+      <div id="change">
+        <p id="chheading">FUTURE EVENTS</p>
+        <div id="changebody">
+          <ul id="allevents">
+            <li>new Event 1</li>
+          </ul>
+        </div>
+      </div>
+      <div id="changebtns">
+      </div>
+    </div>
+  </div>
+
+  <script src="j-query.js"></script>
+  <script src="ajax.js"></script>
+  <script src="calendar.js"></script>
 </body>
 
 </html>

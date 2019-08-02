@@ -1,19 +1,19 @@
-const Domain='https://dhbw.cheekbyte.de/calendar/testUser1';
+const Domain = 'https://dhbw.cheekbyte.de/calendar/testUser1';
 
-URL = Domain+"/events";
-var getAllEvents = $.ajax ({
-    method: "GET",
-    url: URL    
+URL = Domain + "/events";
+var getAllEvents = $.ajax({
+  method: "GET",
+  url: URL
 });
 
 
-getAllEvents.done(function(done){
-    console.log(done);
-    console.log(eventData);
+getAllEvents.done(function (done) {
+  console.log(done);
+  console.log(eventData);
 });
 
-getAllEvents.fail(function(fail){
-    console.log(fail);
+getAllEvents.fail(function (fail) {
+  console.log(fail);
 });
 
 /*
@@ -40,19 +40,20 @@ getAllEvents.fail(function(fail){
         "extra": null
 */
 
-var evtTitle = $('input[name="formTitle"]').val();
-var evtLocation = $('input[name="formLocation"]').val();
-var evtOrganizer = $('input[name="formOrganizer"]').val();
-var evtStart = $('input[name="formStart"]').val();
-var evtEnd = $('input[name="formEnd"]').val();
-var evtStatus= $('input[name=formStatus]').val();
-var evtAllday= $('input[name=formAllday]').val();
-var evtWebpage= $('select[name=formStatus]').val();
-var evtIMAGE= $('[name=formImage]').val();
+$('#eventForm').submit(() => {
+  var evtTitle = $('input[name="formTitle"]').val();
+  var evtLocation = $('input[name="formLocation"]').val();
+  var evtOrganizer = $('input[name="formOrganizer"]').val();
+  var evtStart = $('input[name="formStart"]').val();
+  var evtEnd = $('input[name="formEnd"]').val();
+  var evtStatus = $('input[name=formStatus]').val();
+  var evtAllday = $('input[name=formAllday]').val();
+  var evtWebpage = $('select[name=formStatus]').val();
+  var evtIMAGE = $('[name=formImage]').val();
 
 
 
-var eventData = {
+  var eventData = {
     "title": evtTitle,
     "location": evtLocation,
     "organizer": evtOrganizer,
@@ -62,28 +63,23 @@ var eventData = {
     "allday": evtAllday,
     "webpage": evtWebpage,
     "imageurl": evtIMAGE,
-    }
+  }
 
-
-    
-
-    var createEvent = $.ajax({
-        url : URL,
-        method: "POST",
-        contentType: false,
-        data: JSON.stringify(eventData),
-        success: function(){console.log("SUCCC");},
-        error: function(){console.log("ERRR");},
-        dataType: "json"
-        }
-    );
-    
-    createEvent.done(function( done ) {
-            console.log("DONE: ");
-            console.log(done);
+  $.ajax({
+    url: URL,
+    method: "POST",
+    contentType: false,
+    data: JSON.stringify(eventData),
+    success: function () { console.log("SUCCC"); },
+    error: function () { console.log("ERRR"); },
+    dataType: "json"
+  })
+    .done(function (done) {
+      console.log("DONE: ");
+      console.log(done);
+    })
+    .fail(function (fail) {
+      console.log("FAIL: ");
+      console.log(fail);
     });
-
-    createEvent.fail(function( fail ) {
-            console.log("FAIL: ");
-            console.log(fail);
-    });
+});
