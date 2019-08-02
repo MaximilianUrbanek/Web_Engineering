@@ -86,3 +86,77 @@ var eventData = {
             console.log("FAIL: ");
             console.log(fail);
     });
+    var deleteEvent = $.ajax({
+        url : URL,
+        method:"DELETE"
+    });
+    
+    deleteEvent.done(function(done){
+        console.log("Event deleted at Index:"+i);
+        console.log(done);
+    });
+
+    deleteEvent.fail(function(fail){
+        console.log("Failed to delete Event");
+        console.log(fail);
+    });
+    /*
+    //Function to add an event to the remote-database !!!TODO!!! (Fix image-Data and categories)
+    function addEvent(
+      title,
+      location,
+      organizer, //Mandatory
+      start, //Mandatory
+      end, //Mandatory
+      status, //Mandatory
+      allday, //Mandatory
+      webpage,
+      imageData,
+      categories,
+      extra
+    ) {
+      $.ajax({
+        url: Domain + "events",
+        type: "POST",
+        dataType: "json",
+        data:
+          '{"title":"' +
+          title +
+          '",' +
+          '"location": "' +
+          location +
+          '",' +
+          '"organizer": "' +
+          organizer +
+          '",' +
+          '"start": "' +
+          start + //Format: 2014-12-24T18:00
+          '",' +
+          '"end": "' +
+          end + //Format: 2014-12-24T23:30
+          '",' +
+          '"status": "' +
+          status +
+          '",' +
+          '"allday":' +
+          allday +
+          "," +
+          '"webpage": "' +
+          webpage +
+          '",' +
+          '"image data": null,' +
+          '"categories": [],' +
+          '"extra":"' +
+          extra +
+          '"}',
+        success: function(data) {
+          return true;
+        },
+        error: function(error) {
+          alert(
+            "Could not add event: " + error.status + " " + error.statusText
+          );
+          return false;
+        }
+      });
+    }*/
