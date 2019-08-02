@@ -23,6 +23,10 @@ function updateView() {
 function dayclick(day) {
     var month = document.getElementById("months").value;
     var year = document.getElementById("years").value;
+    dayview(day,month,year);
+}
+
+function dayview(day, month, year) {
     var listel = document.getElementById("days").getElementsByTagName("LI");
     for (var i = 0; i < listel.length; i++) {
         listel[i].style.backgroundColor = "rgb(255,232,232)";
@@ -31,10 +35,11 @@ function dayclick(day) {
 
     document.getElementById("chheading").innerHTML = "Events on " + month + " " + day + ", " + year + ":";
     document.getElementById("changebtns").innerHTML = "<button id='changeback' onclick='changebackall()' class='fas fa-angle-left'></button>";
-    document.getElementById("changebody").innerHTML = "<div id='changebtns'><button id='addevent' onclick='addevent()'>Add new Event</button></div>";
+    document.getElementById("changebody").innerHTML = "<div id='changebtns'><button id='addevent' onclick='addevent(day,month,year)'>Add new Event</button></div>";
 }
 
-function changebackall() {
+
+function changeback() {
     var listel = document.getElementById("days").getElementsByTagName("LI");
     for (var i = 0; i < listel.length; i++) {
         listel[i].style.backgroundColor = "rgb(255,232,232)";
@@ -44,9 +49,7 @@ function changebackall() {
     document.getElementById("changebody").innerHTML = "<ul id='allevents'><li>new Event 1</li></ul>"
 }
 
-function changeback(day, month, year) {}
-
 function addevent(day, month, year) {
     document.getElementById("changebody").innerHTML = "<ul id='neweventform'><li><input type='text' placeholder='Event Title' class='eventinput'></li><li><input type='text' placeholder='Location' class='eventinput'></li><li><input type='text' placeholder='Organizer' class='eventinput'></li><li>Start time: <input type='time' value='08:00' class='eventinput'></li><li>End time: <input type='time' value='09:00' class='eventinput'></li><li>All day event? <input type='checkbox'></li><li><select class='eventinput'><option>Busy</option><option>Free</option></select></li><li><input type='text' placeholder='Webpage' class='eventinput'></li><li><input type='text' placeholder='Image-url' class='eventinput'></li><li></li><li><button class='eventinput' >Submit</button></li></ul>"
-    document.getElementById("changebtns").innerHTML = "<button id='changeback' onclick='changebackall()' class='fas fa-angle-double-left'></button><button id='changeback' onclick='changeback()' class='fas fa-angle-left'>";
+    document.getElementById("changebtns").innerHTML = "<button id='changeback' onclick='changeback(day,month,year)' class='fas fa-angle-double-left'></button><button id='changeback' onclick='dayview(day,month,year)' class='fas fa-angle-left'>";
 }
