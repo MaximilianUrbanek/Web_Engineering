@@ -6,6 +6,7 @@ var getAllEvents = $.ajax ({
     url: URL    
 });
 
+
 getAllEvents.done(function(done){
     console.log(done);
     console.log(eventData);
