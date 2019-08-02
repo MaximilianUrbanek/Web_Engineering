@@ -25,7 +25,7 @@ function dayclick(day) {
     var year = document.getElementById("years").value;
     var listel = document.getElementById("days").getElementsByTagName("LI");
     for (var i = 0; i < listel.length; i++) {
-        listel[i].style.backgroundColor = "rgb(187, 164, 174)";
+        listel[i].style.backgroundColor = "rgb(255,232,232)";
     }
     document.getElementById(day).style.backgroundColor = "rgb(132,89,107)";
 
@@ -37,13 +37,16 @@ function dayclick(day) {
 function changebackall() {
     var listel = document.getElementById("days").getElementsByTagName("LI");
     for (var i = 0; i < listel.length; i++) {
-        listel[i].style.backgroundColor = "rgb(187, 164, 174)";
+        listel[i].style.backgroundColor = "rgb(255,232,232)";
     }
     document.getElementById("chheading").innerHTML = "Future Events";
-    document.getElementById("changeback").style.visibility = "hidden";
+    document.getElementById("changebtns").innerHTML = "";
     document.getElementById("changebody").innerHTML = "<ul id='allevents'><li>new Event 1</li></ul>"
 }
 
-function addevent() {
-    document.getElementById("changebody").innerHTML = "<ul id='neweventform'><li><input type='text' placeholder='Event Title' class='eventinput'></li><li><input type='text' placeholder='Location' class='eventinput'></li><li><input type='text' placeholder='Organizer' class='eventinput'></li><li>Start time: <input type='time' value='08:00'></li><li>End time: <input type='time' value='09:00'</li><li>All day event? <input type='checkbox'></li><li><select><option>Busy</option><option>Free</option></select></li><li><input type='text' placeholder='Webpage' class='eventinput'></li><li><input type='text' placeholder='Image-url' class='eventinput'></li><button id='addeventsubmit' >Submit</button></ul>"
+function changeback(day, month, year) {}
+
+function addevent(day, month, year) {
+    document.getElementById("changebody").innerHTML = "<ul id='neweventform'><li><input type='text' placeholder='Event Title' class='eventinput'></li><li><input type='text' placeholder='Location' class='eventinput'></li><li><input type='text' placeholder='Organizer' class='eventinput'></li><li>Start time: <input type='time' value='08:00' class='eventinput'></li><li>End time: <input type='time' value='09:00' class='eventinput'></li><li>All day event? <input type='checkbox'></li><li><select class='eventinput'><option>Busy</option><option>Free</option></select></li><li><input type='text' placeholder='Webpage' class='eventinput'></li><li><input type='text' placeholder='Image-url' class='eventinput'></li><li></li><li><button class='eventinput' >Submit</button></li></ul>"
+    document.getElementById("changebtns").innerHTML = "<button id='changeback' onclick='changebackall()' class='fas fa-angle-double-left'></button><button id='changeback' onclick='changeback()' class='fas fa-angle-left'>";
 }
