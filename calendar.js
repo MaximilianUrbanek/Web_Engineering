@@ -40,7 +40,7 @@ function changebackall() {
     listel[i].style.backgroundColor = "rgb(255,232,232);";
   }
   document.getElementById("chheading").innerHTML = "Future Events";
-  document.getElementById("changeback").style.visibility = "hidden";
+  document.getElementById("changebtns").innerHTML = "";
   document.getElementById("changebody").innerHTML = "<ul id='allevents'><li>new Event 1</li></ul>"
 }
 
@@ -49,22 +49,22 @@ function addevent() {
     <form id="eventForm">
     <ul id='neweventform'>
         <li>
-            <input type='text' placeholder='Event Title' class='eventinput'>
+            <input id='formTitle' type='text' placeholder='Event Title' class='eventinput'>
         </li>
         <li>
-            <input type='text' placeholder='Location' class='eventinput'>
+            <input id='formLocation' type='text' placeholder='Location' class='eventinput'>
         </li>
-        <li><input type='text' placeholder='Organizer' class='eventinput'></li>
-        <li>Start time: <input type='time' class='eventinput' value='08:00'></li>
-        <li>End time: <input type='time' class='eventinput' value='09:00' </li> <li>All day event? <input
-                type='checkbox'></li>
-        <li><select class='eventinput'>
+        <li><input id='formOrganizer' type='text' placeholder='Organizer' class='eventinput'></li>
+        <li>Start time: <input id='formStart' type='time' class='eventinput' value='08:00'></li>
+        <li>End time: <input id='formEnd' type='time' class='eventinput' value='09:00' 
+        </li> <li>All day event? <input id='formAllday' type='checkbox'></li>
+        <li><select id='formStatus' class='eventinput'>
                 <option>Busy</option>
                 <option>Free</option>
             </select></li>
-        <li><input type='text' placeholder='Webpage' class='eventinput'></li>
-        <li><input type='text' placeholder='Image-url' class='eventinput'></li><button
-            id='addeventsubmit'>Submit</button>
+        <li><input id='formWeb' type='text' placeholder='Webpage' class='eventinput'></li>
+        <li><input id='formImage' type='text' placeholder='Image-url' class='eventinput'></li>
+        <li><button id='formSubmit' class='eventinput' type='button'>Submit</button></li>
     </ul>
     </form>`;
 }
