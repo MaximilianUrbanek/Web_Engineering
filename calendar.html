@@ -13,18 +13,18 @@
   <header>Calendar</header>
 
   <select id="months" onchange="updateView()">
-    <option value="January">January</option>
-    <option value="February">February</option>
-    <option value="March">March</option>
-    <option value="April">April</option>
-    <option value="May">May</option>
-    <option value="June">June</option>
-    <option value="July">July</option>
-    <option value="August">August</option>
-    <option value="September">September</option>
-    <option value="October">October</option>
-    <option value="November">November</option>
-    <option value="December">December</option>
+    <option value="January" id="01">January</option>
+    <option value="February" id="02">February</option>
+    <option value="March" id="03">March</option>
+    <option value="April" id="04">April</option>
+    <option value="May" id="05">May</option>
+    <option value="June" id="06">June</option>
+    <option value="July" id="07">July</option>
+    <option value="August" id="08">August</option>
+    <option value="September" id="09">September</option>
+    <option value="October" id="10">October</option>
+    <option value="November" id="11">November</option>
+    <option value="December" id="12">December</option>
   </select>
 
   <select id="years" onchange="updateView()">
@@ -82,7 +82,7 @@
       <div id="change">
         <p id="chheading">FUTURE EVENTS</p>
         <div id="changebody">
-          
+          <ul id="showEvents"></ul>
         </div>
       </div>
       <div id="changebtns">
@@ -90,6 +90,8 @@
       </div>
     </div>
   </div>
+
+  <p id="selected" style="visibility: hidden"></p>
 
   <script src="j-query.js"></script>
   <script src="ajax.js"></script>
