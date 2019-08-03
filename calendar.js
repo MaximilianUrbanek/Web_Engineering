@@ -31,7 +31,7 @@ function dayclick(day) {
     monthnumber = "0" + monthnumber;
   }
   var year = document.getElementById("years").value;
-  document.getElementById("selected").innerHTML = year+"-"+monthnumber+"-"+day+T;
+  document.getElementById("selected").innerHTML = year+"-"+monthnumber+"-"+day+"T";
   var listel = document.getElementById("days").getElementsByTagName("LI");
   for (var i = 0; i < listel.length; i++) {
     listel[i].style.backgroundColor = "rgb(255,232,232)";
