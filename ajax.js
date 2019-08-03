@@ -1,4 +1,3 @@
-
 $(function () {
   var Domain = 'https://dhbw.cheekbyte.de/calendar/test';
   URL = Domain + "/events";
@@ -7,8 +6,8 @@ $(function () {
   var $Title = $('#title');
   var $Location = $('#location');
   var $Organizer = $('#organizer');
-  var $Start = $(document.getElementById(selected).innerHTML+'#start');
-  var $End = $(document.getElementById(selected).innerHTML+'#end');
+  //var $Start = $(document.getElementById(selected).innerHTML+'#start');
+  //var $End = $(document.getElementById(selected).innerHTML+'#end');
   var $Status = $('#status');
   var $Allday = $('#allday');
   var $Webpage = $('#webpage');
@@ -18,8 +17,8 @@ $(function () {
     title: $Title.val(),
     location: $Location.val(),
     organizer: $Organizer.val(),
-    start: $Start.val(),
-    end: $End.val(),
+    //start: $Start.val(),
+    //end: $End.val(),
     status: $Status.val(),
     allday: $Allday.val(),
     webpage: $Webpage.val(),
@@ -43,12 +42,13 @@ $(function () {
       });
     }
   });
-
+/*
   $.ajax({
     type: "POST",
     url: URL,
 
   })
+  */
 }
 )
  
