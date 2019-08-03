@@ -79,15 +79,16 @@ select {
     visibility: hidden;
 }
 
-#changeback {
+#changebtns button{
     height: 32px;
     width: 32px;
     margin-top: 24px;
     background-color:rgb(255,232,232);;
     border: 1px solid  rgb(132,89,107);
     border-radius: 3px;
-    font-size: 24px;
+    font-size: 20px;
     color: rgb(48,33,39);
+    text-align: center;
 }
 
 #addevent {
