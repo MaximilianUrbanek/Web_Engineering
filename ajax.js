@@ -1,7 +1,7 @@
 
 $(function () {
-  var Domain = 'https://dhbw.cheekbyte.de/calendar/test';
-  URL = Domain + "/events";
+  var Domain = "https://dhbw.cheekbyte.de/calendar/test"
+  URL = Domain + "/events"
   var $events = $('#showEvents');
 
   var $Title = $('#title');
