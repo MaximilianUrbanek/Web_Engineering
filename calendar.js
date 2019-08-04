@@ -60,6 +60,7 @@ function changebackall() {
 
 function addevent() {
   AllEventList = document.getElementById("changebody").innerHTML;
+   
   document.getElementById("changebody").innerHTML = `
     <form id="eventForm">
     <ul id='neweventform'>
@@ -70,44 +71,43 @@ function addevent() {
             <input id='location' type='text' placeholder='Location' required class='eventinput'>
         </li>
         <li><input id='organizer' type='text' placeholder='Organizer' required class='eventinput'></li>
-        <li>Start time: <input id='formStart' type='time' class='eventinput' value='08:00'></li>
-        <li>End time: <input id='formEnd' type='time' class='eventinput' value='09:00' 
-        </li> <li>All day event? <input id='allday' type='checkbox'></li>
+        <script>
+          $("#formStart").datetimepicker({format:'Y-m-d H:i'}); 
+          $("#formEnd").datetimepicker({format:'Y-m-d H:i'});
+        </script>
+        <li>Start time: <input id='formStart' type='datetime-local' class='eventinput'></li>
+        <li>End time: <input id='formEnd' type='datetime-local' class='eventinput'</li> 
+        <li>All day event? <input id='allday' type='checkbox'></li>
         <li><select id='status' class='eventinput'>
                 <option>Busy</option>
                 <option>Free</option>
             </select></li>
         <li><input id='webpage' type='text' placeholder='Webpage' class='eventinput'></li>
         <li><input id='imageurl' type='text' placeholder='Image-url' class='eventinput'></li>
-        <li><button id='formSubmit' class='eventinput' type='button'>Submit</button></li>
+        <li><button id='formSubmit' class='eventinput'>Submit</button></li>
     </ul>
     </form>`;
+
+    var $Title = $('#title');
+    var $Location = $('#location');
+    var $Organizer = $('#organizer');
+    var $Start =$('#start');
+    var $End =$('#end');
+    var $Status = $('#status');
+    var $Allday = $('#allday');
+    var $Webpage = $('#webpage');
+    var $IMAGE = $('#imageurl');
+  
+    var eventData = {
+      title: $Title.val(),
+      location: $Location.val(),
+      organizer: $Organizer.val(),
+      start: $Start.val(),
+      end: $End.val(),
+      status: $Status.val(),
+      allday: $Allday.val(),
+      webpage: $Webpage.val(),
+      imageurl: $IMAGE.val(),
+    }
 }
 
-function showDayEvents() {
-  var Domain = "https://dhbw.cheekbyte.de/calendar/test"
-  URL = Domain + "/events"
-  var $events = $('#showEvents');
-  $.ajax({
-    type: "GET",
-    url: URL,
-    success: function(events) {
-      $.each(events, function(i, event){
-        if(event.start.includes(document.getElementById("selected").innerHTML)){
-          $events.append(`
-            <li><ul>
-              <li>Title: `+ event.title +`</li>
-              <li>Location: `+ event.location +`</li>
-              <li>Organizer: `+ event.organizer +`</li>
-              <li>Start: `+ event.start +`</li>
-              <li>End: `+ event.end +`</li>
-            </ul></li>
-          `)
-        }
-      });
-      if(document.getElementById("showEvents").innerHTML == ""){
-        document.getElementById("changebody").innerHTML = "No Events starting today"
-      }
-    }
-  });
-}
