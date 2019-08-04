@@ -84,30 +84,7 @@ function addevent() {
             </select></li>
         <li><input id='webpage' type='text' placeholder='Webpage' class='eventinput'></li>
         <li><input id='imageurl' type='text' placeholder='Image-url' class='eventinput'></li>
-        <li><button id='formSubmit' class='eventinput'>Submit</button></li>
+        <li><button id='formSubmit' class='eventinput' onclick='createEvent()'>Submit</button></li>
     </ul>
     </form>`;
-
-    var $Title = $('#title');
-    var $Location = $('#location');
-    var $Organizer = $('#organizer');
-    var $Start =$('#start');
-    var $End =$('#end');
-    var $Status = $('#status');
-    var $Allday = $('#allday');
-    var $Webpage = $('#webpage');
-    var $IMAGE = $('#imageurl');
-  
-    var eventData = {
-      title: $Title.val(),
-      location: $Location.val(),
-      organizer: $Organizer.val(),
-      start: $Start.val(),
-      end: $End.val(),
-      status: $Status.val(),
-      allday: $Allday.val(),
-      webpage: $Webpage.val(),
-      imageurl: $IMAGE.val(),
-    }
 }
-

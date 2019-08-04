@@ -1,8 +1,9 @@
-$(function () {
-  var Domain = "https://dhbw.cheekbyte.de/calendar/test"
+var Domain = "https://dhbw.cheekbyte.de/calendar/test"
   URL = Domain + "/events"
   var $events = $('#showEvents');
-
+  
+$(function () {
+  
   $.ajax({
     type: "GET",
     url: URL,
@@ -21,20 +22,10 @@ $(function () {
       AllEventList = events;
     }
   });
-
-/*
-  $.ajax({
-    type: "POST",
-    url: URL,
-
-  })
-  */
 })
 
 function showDayEvents() {
-  var Domain = "https://dhbw.cheekbyte.de/calendar/test"
-  URL = Domain + "/events"
-  var $events = $('#showEvents');
+  
   $.ajax({
     type: "GET",
     url: URL,
@@ -57,6 +48,42 @@ function showDayEvents() {
       }
     }
   });
+}
+
+
+function createEvent(){
+  console.log("create aufgerufen");
+  var eventData = {
+    title: $title.val(),
+    location: $location.val(),
+    organizer: $organizer.val(),
+    start: $formStart.val(),
+    end: $formEnd.val(),
+    status: $status.val(),
+    allday: $allday.val(),
+    webpage: $webpage.val(),
+    imageurl: $imageurl.val(),
+  }
+
+  $.ajax ({
+    type : 'POST',
+    url : URL,
+    data: eventData,
+    success: function(event) {
+      $events.append(`
+      <li><ul>
+        <li>Title: `+ event.title +`</li>
+        <li>Location: `+ event.location +`</li>
+        <li>Organizer: `+ event.organizer +`</li>
+        <li>Start: `+ event.start +`</li>
+        <li>End: `+ event.end +`</li>
+      </ul></li>
+    `)
+    },
+    error: function(){
+      alert("Irgendein Fehler")
+    }
+  })
 }
  
 
