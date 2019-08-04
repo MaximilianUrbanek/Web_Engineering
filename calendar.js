@@ -1,4 +1,4 @@
-var AllEventList = "";
+var AllEventList;
 
 function updateView() {
   var month = document.getElementById("months").value;
@@ -32,28 +32,29 @@ function dayclick(day) {
   }
   var year = document.getElementById("years").value;
   document.getElementById("selected").innerHTML = year+"-"+monthnumber+"-"+day+"T";
+  
   var listel = document.getElementById("days").getElementsByTagName("LI");
-  for (var i = 0; i < listel.length; i++) {
-    listel[i].style.backgroundColor = "rgb(255,232,232)";
+  for (var a = 0; a < listel.length; a++) {
+    listel[a].style.backgroundColor = "rgb(255,232,232)";
   }
   document.getElementById(day).style.backgroundColor = "rgb(132,89,107)";
 
   document.getElementById("chheading").innerHTML = "Events on " + month + " " + day + ", " + year + ":";
   document.getElementById("changebtns").innerHTML = `
     <button id='changeback' onclick='changebackall()' class='fas fa-angle-left'></button>
-    <button id='btnShowAll' class='far fa-eye'></button>
+    <button id='btnShow' class='far fa-eye' onclick='showDayEvents()'></button>
     <button id='addevent' onclick='addevent()' class='fas fa-calendar-plus'></button></div>`;
   AllEventList = document.getElementById("changebody").innerHTML;
-  document.getElementById("changebody").innerHTML = "";
+  document.getElementById("changebody").innerHTML = "<ul id='showEvents'></ul>";
 }
 
 function changebackall() {
   var listel = document.getElementById("days").getElementsByTagName("LI");
   for (var i = 0; i < listel.length; i++) {
-    listel[i].style.backgroundColor = "rgb(255,232,232);";
+    listel[i].style.backgroundColor = "rgb(255,232,232)";
   }
   document.getElementById("chheading").innerHTML = "Future Events";
-  document.getElementById("changebtns").innerHTML = "<button id='btnShowAll' class='fas fa-eye'></button>";
+  document.getElementById("changebtns").innerHTML = "";
   document.getElementById("changebody").innerHTML = AllEventList;
 }
 
@@ -81,4 +82,32 @@ function addevent() {
         <li><button id='formSubmit' class='eventinput' type='button'>Submit</button></li>
     </ul>
     </form>`;
+}
+
+function showDayEvents() {
+  var Domain = "https://dhbw.cheekbyte.de/calendar/test"
+  URL = Domain + "/events"
+  var $events = $('#showEvents');
+  $.ajax({
+    type: "GET",
+    url: URL,
+    success: function(events) {
+      $.each(events, function(i, event){
+        if(event.start.includes(document.getElementById("selected").innerHTML)){
+          $events.append(`
+            <li><ul>
+              <li>Title: `+ event.title +`</li>
+              <li>Location: `+ event.location +`</li>
+              <li>Organizer: `+ event.organizer +`</li>
+              <li>Start: `+ event.start +`</li>
+              <li>End: `+ event.end +`</li>
+            </ul></li>
+          `)
+        }
+      });
+      if(document.getElementById("showEvents").innerHTML == ""){
+        document.getElementById("changebody").innerHTML = "No Events starting today"
+      }
+    }
+  });
 }

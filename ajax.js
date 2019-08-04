@@ -6,8 +6,8 @@ $(function () {
   var $Title = $('#title');
   var $Location = $('#location');
   var $Organizer = $('#organizer');
-  //var $Start = $(document.getElementById(selected).innerHTML+'#start');
-  //var $End = $(document.getElementById(selected).innerHTML+'#end');
+  var $Start =$('#start');
+  var $End =$('#end');
   var $Status = $('#status');
   var $Allday = $('#allday');
   var $Webpage = $('#webpage');
@@ -17,8 +17,8 @@ $(function () {
     title: $Title.val(),
     location: $Location.val(),
     organizer: $Organizer.val(),
-    //start: $Start.val(),
-    //end: $End.val(),
+    start: $Start.val(),
+    end: $End.val(),
     status: $Status.val(),
     allday: $Allday.val(),
     webpage: $Webpage.val(),
@@ -40,8 +40,10 @@ $(function () {
           </ul></li>
         `)
       });
+      AllEventList = events;
     }
   });
+
 /*
   $.ajax({
     type: "POST",
@@ -49,8 +51,35 @@ $(function () {
 
   })
   */
+})
+
+function showDayEvents() {
+  var Domain = "https://dhbw.cheekbyte.de/calendar/test"
+  URL = Domain + "/events"
+  var $events = $('#showEvents');
+  $.ajax({
+    type: "GET",
+    url: URL,
+    success: function(events) {
+      $.each(events, function(i, event){
+        if(event.start.includes(document.getElementById("selected").innerHTML)){
+          $events.append(`
+            <li><ul>
+              <li>Title: `+ event.title +`</li>
+              <li>Location: `+ event.location +`</li>
+              <li>Organizer: `+ event.organizer +`</li>
+              <li>Start: `+ event.start +`</li>
+              <li>End: `+ event.end +`</li>
+            </ul></li>
+          `)
+        }
+      });
+      if(document.getElementById("showEvents").innerHTML == ""){
+        document.getElementById("changebody").innerHTML = "No Events starting today"
+      }
+    }
+  });
 }
-)
  
 
 /*
