@@ -156,16 +156,14 @@ function addevent() {
 $(function () {
 
   $('#btnDeleteEvent').on('click', function (events) {
-    URL = DOMAIN + "/events/" + eventID;
+    URL = DOMAIN + "/events/" + ID;
 
     var delID = -1;
-	for(var i = 0 ; i < events.length ; i++)
-	{
-		if(events[i] != null)
-		{
-			if(events[i].id == ID) { delID = i ; break; }
-		}
-	}
+    for (var i = 0; i < events.length; i++) {
+      if (events[i] != null) {
+        if (events[i].id == ID) { delID = i; break; }
+      }
+    }
 
     $.ajax({
       method: "DELETE",
@@ -177,13 +175,11 @@ $(function () {
           events[i] = null;
         }
       },
-    }).fail(function(fail) {
-      if(fail["status"] == 404)
-      {
+    }).fail(function (fail) {
+      if (fail["status"] == 404) {
         information("EVENT COULD NOT BE DELETED - EVENT NOT FOUND / ALREADY DELETED");
       }
-      else
-      {
+      else {
         information(fail["responseJSON"]["description"]);
       }
     });
