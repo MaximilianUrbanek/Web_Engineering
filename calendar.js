@@ -24,15 +24,15 @@ function updateView() {
 
 function dayclick(day) {
   var month = document.getElementById("months").value;
-  if (month == "October" || month == "November" || month=="December") {
+  if (month == "October" || month == "November" || month == "December") {
     var monthnumber = document.getElementById("months").selectedIndex + 1;
   } else {
     var monthnumber = document.getElementById("months").selectedIndex + 1;
     monthnumber = "0" + monthnumber;
   }
   var year = document.getElementById("years").value;
-  document.getElementById("selected").innerHTML = year+"-"+monthnumber+"-"+day+"T";
-  
+  document.getElementById("selected").innerHTML = year + "-" + monthnumber + "-" + day + "T";
+
   var listel = document.getElementById("days").getElementsByTagName("LI");
   for (var a = 0; a < listel.length; a++) {
     listel[a].style.backgroundColor = "rgb(255,232,232)";
@@ -60,7 +60,6 @@ function changebackall() {
 
 function addevent() {
   AllEventList = document.getElementById("changebody").innerHTML;
-   
   document.getElementById("changebody").innerHTML = `
     <form id="eventForm">
     <ul id='neweventform'>
@@ -72,15 +71,12 @@ function addevent() {
         </li>
         <li><input id='organizer' type='text' placeholder='Organizer' required class='eventinput'></li>
         <script>
-          $("#formStart").datetimepicker({format:'Y-m-d H:i'}); 
+          $("#formStart").datetimepicker({format:'Y-m-d'+"T"+'H:i'}); 
           $("#formEnd").datetimepicker({format:'Y-m-d H:i'});
         </script>
-        <li>Start time: <input id='formStart' type='datetime-local' class='eventinput' name='formStart'></li>
-        <li>End time: <input id='formEnd' type='datetime-local' class='eventinput' name='formEnd'</li> 
-        <li>All day event? <select id="allday" class="eventinput">
-            <option value="true">Yes</option>
-            <option value="false">No</option>
-          </select></li>
+        <li>Start time: <input id='formStart' type='datetime-local' class='eventinput'></li>
+        <li>End time: <input id='formEnd' type='datetime-local' class='eventinput'</li> 
+        <li>All day event? <input id='allday' type='checkbox'></li>
         <li><select id='status' class='eventinput'>
               <option>Busy</option>
               <option>Free</option>
@@ -91,65 +87,101 @@ function addevent() {
     </ul>
     </form>`;
 
-    $(function(){
-      $('#formSubmit').on('click', function(){
-        
-        var Title = $('#title').val();
-        var Location = $('#location').val();
-        var Organizer = $('#organizer').val();
-        var StartInput = $('input[name="formStart"]').val();
-	      var EndInput = $('input[name="formEnd"]').val();
-        var Status = $('#status').val();
-        var Allday = $('#allday').val();
-        var Webpage = $('#webpage').val();
-        
-        var Start = StartInput.replace(" ", "T");
-	      var End   = EndInput.replace(" ", "T");
-        
-        var eventData = {
-          "title": Title,
-          "location": Location,
-          "organizer": Organizer,
-          "start": Start,
-          "end": End,
-          "status": Status,
-          "allday": Allday,
-          "webpage": Webpage,
-          "imageurl": null,
-          "categories": null,
-          "extra":null
-        };
+  $(function () {
+    $('#formSubmit').on('click', function () {
 
-        var Domain = "https://dhbw.cheekbyte.de/calendar/test"
-        URL = Domain + "/events"
-        var $events = $('#showEvents');
+      var Domain = "https://dhbw.cheekbyte.de/calendar/test"
+      URL = Domain + "/events"
+      var $events = $('#showEvents');
 
-        var createEvent = $.ajax({
-          url : URL,
-          method: "POST",
-          contentType: false,
-          data: JSON.stringify(eventData),
-          dataType: "json",
-          success: function(event) {
-            alert("success")
-            $events.append(`
+      var $Title = $('#title');
+      var $Location = $('#location');
+      var $Organizer = $('#organizer');
+      var $Start = $('#start');
+      var $End = $('#end');
+      var $Status = $('#status');
+      var $Allday = $('#allday');
+      var $Webpage = $('#webpage');
+      var $IMAGE = $('#imageurl');
+
+      var eventData = {
+        title: $Title.val(),
+        location: $Location.val(),
+        organizer: $Organizer.val(),
+        start: $Start.val(),
+        end: $End.val(),
+        status: $Status.val(),
+        allday: $Allday.val(),
+        webpage: $Webpage.val(),
+        imageurl: $IMAGE.val(),
+      }
+
+      document.getElementById("ABCevent").innerHTML = `<ul>
+          <li>`+ eventData.title + `</li> 
+          <li>`+ eventData.location + `</li>
+          <li>`+ eventData.organizer + `</li>
+          <li>`+ eventData.start + `</li>
+          <li>`+ eventData.end + `</li>
+          <li>`+ eventData.status + `</li>
+          <li>`+ eventData.webpage + `</li>
+          <li>`+ eventData.imageurl + `</li>
+        </ul>`;
+
+      $.ajax({
+        type: 'POST',
+        url: URL,
+        data: eventData,
+        success: function (event) {
+          $events.append(`
             <li><ul>
-              <li>Title: `+ event.title +`</li>
-              <li>Location: `+ event.location +`</li>
-              <li>Organizer: `+ event.organizer +`</li>
-              <li>Start: `+ event.start +`</li>
-              <li>End: `+ event.end +`</li>
+              <li>Title: `+ event.title + `</li>
+              <li>Location: `+ event.location + `</li>
+              <li>Organizer: `+ event.organizer + `</li>
+              <li>Start: `+ event.start + `</li>
+              <li>End: `+ event.end + `</li>
             </ul></li>
-            `)
-          },
-          error: function(xhr, textStatus, error){
-            console.log(xhr.statusText);
-            console.log(textStatus);
-            console.log(error);
+          `)
+        },
+        error: function () {
+          alert("Irgendein Fehler")
         }
-          }
-        );
-        
       });
-    })
+      alert("def");
+    });
+  })
 }
+
+
+
+$(function () {
+
+  $('#btnDeleteEvent').on('click', function (events) {
+    URL = DOMAIN + "/events/" + ID;
+
+    var delID = -1;
+    for (var i = 0; i < events.length; i++) {
+      if (events[i] != null) {
+        if (events[i].id == ID) { delID = i; break; }
+      }
+    }
+
+    $.ajax({
+      method: "DELETE",
+      url: URL,
+      data: eventData,
+      success: function (xhr) {
+        if (xhr.status == 204) {
+          information("EVENT SUCCESSFULLY DELETED");
+          events[i] = null;
+        }
+      },
+    }).fail(function (fail) {
+      if (fail["status"] == 404) {
+        information("EVENT COULD NOT BE DELETED - EVENT NOT FOUND / ALREADY DELETED");
+      }
+      else {
+        information(fail["responseJSON"]["description"]);
+      }
+    });
+  })
+})
