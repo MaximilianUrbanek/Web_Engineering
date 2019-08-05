@@ -82,8 +82,7 @@ function addevent() {
               <option>Free</option>
           </select></li>
         <li><input id='webpage' type='text' placeholder='Webpage' class='eventinput'></li>
-        <li><input id='imageurl' type='text' placeholder='Image-url' class='eventinput'></li>
-        <li><button id='formSubmit' class='eventinput' >Submit</button>/li>
+        <li><button id='formSubmit' class='eventinput' >Submit</button></li>
     </ul>
     </form>`;
 
@@ -102,22 +101,6 @@ function addevent() {
       var $Status = $('#status');
       var $Allday = $('#allday');
       var $Webpage = $('#webpage');
-      var $IMAGE = $('#imageurl');
-
-      let elem = {
-        title: " Christmas Feast",
-        location: "Stuttgart",
-        organizer: "danny@dxc.com",
-        start: "2014-12-24T18:00",
-        end: "2014-12-24T23:30",
-        status: "Busy",
-        allday: false,
-        webpage: "http://www.dxc.com/",
-        extra: null
-      }
-
-      console.log("2014-12-24T23:30")
-      console.log($Start.val())
 
       var eventData = {
         title: $Title.val(),
@@ -125,15 +108,13 @@ function addevent() {
         organizer: $Organizer.val(),
         start: $Start.val().replace(' ', 'T'),
         end: $End.val().replace(' ', 'T'),
-        status: "Busy", //$Status.val(),
+        status: $Status.val(),
         allday: false,
-        webpage: "http://www.dxc.com/", //$Webpage.val(),
+        webpage: $Webpage.val(),
         extra: null
       }
 
       console.log(eventData);
-
-
     
       $.ajax({
         type: 'POST',
@@ -141,7 +122,6 @@ function addevent() {
         dataType: "json",
         data: JSON.stringify(eventData),
         success: function (event) {
-          console.log('success')
           $events.append(`
             <li><ul>
               <li>Title: `+ event.title + `</li>
@@ -153,10 +133,9 @@ function addevent() {
           `)
         },
         error: function () {
-          alert("Irgendein Fehler")
+          alert("Some error has occured")
         }
       });
-      alert("def");
     });
   })
 }
