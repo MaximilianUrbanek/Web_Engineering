@@ -84,7 +84,99 @@ function addevent() {
             </select></li>
         <li><input id='webpage' type='text' placeholder='Webpage' class='eventinput'></li>
         <li><input id='imageurl' type='text' placeholder='Image-url' class='eventinput'></li>
-        <li><button id='formSubmit' class='eventinput' onclick='createEvent()'>Submit</button></li>
+        <li><button id='formSubmit' class='eventinput' >Submit</button></li>
     </ul>
     </form>`;
+
+    $(function(){
+      $('#formSubmit').on('click', function(){
+        console.log("create aufgerufen");
+        var Domain = "https://dhbw.cheekbyte.de/calendar/test"
+        URL = Domain + "/events"
+        var $events = $('#showEvents');
+  
+        var $Title = $('#title');
+        var $Location = $('#location');
+        var $Organizer = $('#organizer');
+        var $Start =$('#start');
+        var $End =$('#end');
+        var $Status = $('#status');
+        var $Allday = $('#allday');
+        var $Webpage = $('#webpage');
+        var $IMAGE = $('#imageurl');
+      
+        var eventData = {
+          title: $Title.val(),
+          location: $Location.val(),
+          organizer: $Organizer.val(),
+          start: $Start.val(),
+          end: $End.val(),
+          status: $Status.val(),
+          allday: $Allday.val(),
+          webpage: $Webpage.val(),
+          imageurl: $IMAGE.val(),
+        }
+        
+        $.ajax ({
+          type : 'POST',
+          url : URL,
+          data: eventData,
+          success: function(event) {
+            $events.append(`
+            <li><ul>
+              <li>Title: `+ event.title +`</li>
+              <li>Location: `+ event.location +`</li>
+              <li>Organizer: `+ event.organizer +`</li>
+              <li>Start: `+ event.start +`</li>
+              <li>End: `+ event.end +`</li>
+            </ul></li>
+          `)
+          },
+          error: function(){
+            alert("Irgendein Fehler")
+          }
+        })
+      });
+    })
 }
+
+
+
+/*function createEvent() {
+  console.log("create aufgerufen");
+  var Domain = "https://dhbw.cheekbyte.de/calendar/test"
+  URL = Domain + "/events"
+  var $events = $('#showEvents');
+
+  var eventData = {
+    title: $title.val(),
+    location: $location.val(),
+    organizer: $organizer.val(),
+    start: $formStart.val(),
+    end: $formEnd.val(),
+    status: $status.val(),
+    allday: $allday.val(),
+    webpage: $webpage.val(),
+    imageurl: $imageurl.val(),
+  }
+
+  $.ajax ({
+    type : 'POST',
+    url : URL,
+    data: eventData,
+    success: function(event) {
+      $events.append(`
+      <li><ul>
+        <li>Title: `+ event.title +`</li>
+        <li>Location: `+ event.location +`</li>
+        <li>Organizer: `+ event.organizer +`</li>
+        <li>Start: `+ event.start +`</li>
+        <li>End: `+ event.end +`</li>
+      </ul></li>
+    `)
+    },
+    error: function(){
+      alert("Irgendein Fehler")
+    }
+  })
+}*/
