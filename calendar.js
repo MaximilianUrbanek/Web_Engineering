@@ -71,11 +71,11 @@ function addevent() {
         </li>
         <li><input id='organizer' type='text' placeholder='Organizer' required class='eventinput'></li>
         <script>
-          $("#formStart").datetimepicker({format:'Y-m-d'+"T"+'H:i'}); 
+          $("#formStart").datetimepicker({format:'Y-m-d H:i'}); 
           $("#formEnd").datetimepicker({format:'Y-m-d H:i'});
         </script>
-        <li>Start time: <input id='formStart' type='datetime-local' class='eventinput'></li>
-        <li>End time: <input id='formEnd' type='datetime-local' class='eventinput'</li> 
+        <li>Start time: <input id='formStart' type='datetime-local' name='formStart' class='eventinput'></li>
+        <li>End time: <input id='formEnd' type='datetime-local' name='formEnd' class='eventinput'</li> 
         <li>All day event? <input id='allday' type='checkbox'></li>
         <li><select id='status' class='eventinput'>
               <option>Busy</option>
@@ -83,13 +83,13 @@ function addevent() {
           </select></li>
         <li><input id='webpage' type='text' placeholder='Webpage' class='eventinput'></li>
         <li><input id='imageurl' type='text' placeholder='Image-url' class='eventinput'></li>
-        <li><button id='formSubmit' class='eventinput' >Submit</button></li>
+        <li><button id='formSubmit' class='eventinput' >Submit</button>/li>
     </ul>
     </form>`;
 
   $(function () {
-    $('#formSubmit').on('click', function () {
-
+    $('#formSubmit').on('click', function (event) {
+      event.preventDefault();
       var Domain = "https://dhbw.cheekbyte.de/calendar/test"
       URL = Domain + "/events"
       var $events = $('#showEvents');
@@ -97,41 +97,51 @@ function addevent() {
       var $Title = $('#title');
       var $Location = $('#location');
       var $Organizer = $('#organizer');
-      var $Start = $('#start');
-      var $End = $('#end');
+      var $Start = $('input[name="formStart"]');
+      var $End = $('input[name="formEnd"]');
       var $Status = $('#status');
       var $Allday = $('#allday');
       var $Webpage = $('#webpage');
       var $IMAGE = $('#imageurl');
 
-      var eventData = {
-        title: $Title.val(),
-        location: $Location.val(),
-        organizer: $Organizer.val(),
-        start: $Start.val(),
-        end: $End.val(),
-        status: $Status.val(),
-        allday: $Allday.val(),
-        webpage: $Webpage.val(),
-        imageurl: $IMAGE.val(),
+      let elem = {
+        title: " Christmas Feast",
+        location: "Stuttgart",
+        organizer: "danny@dxc.com",
+        start: "2014-12-24T18:00",
+        end: "2014-12-24T23:30",
+        status: "Busy",
+        allday: false,
+        webpage: "http://www.dxc.com/",
+        extra: null
       }
 
-      document.getElementById("ABCevent").innerHTML = `<ul>
-          <li>`+ eventData.title + `</li> 
-          <li>`+ eventData.location + `</li>
-          <li>`+ eventData.organizer + `</li>
-          <li>`+ eventData.start + `</li>
-          <li>`+ eventData.end + `</li>
-          <li>`+ eventData.status + `</li>
-          <li>`+ eventData.webpage + `</li>
-          <li>`+ eventData.imageurl + `</li>
-        </ul>`;
+      console.log("2014-12-24T23:30")
+      console.log($Start.val())
 
+      var eventData = {
+        title: $Title.val(),
+        location:  $Location.val(),
+        organizer: $Organizer.val(),
+        start: $Start.val().replace(' ', 'T'),
+        end: $End.val().replace(' ', 'T'),
+        status: "Busy", //$Status.val(),
+        allday: false,
+        webpage: "http://www.dxc.com/", //$Webpage.val(),
+        extra: null
+      }
+
+      console.log(eventData);
+
+
+    
       $.ajax({
         type: 'POST',
         url: URL,
-        data: eventData,
+        dataType: "json",
+        data: JSON.stringify(eventData),
         success: function (event) {
+          console.log('success')
           $events.append(`
             <li><ul>
               <li>Title: `+ event.title + `</li>
@@ -151,37 +161,11 @@ function addevent() {
   })
 }
 
+/*$("#btnDeleteEvent").on( "click", function(event) {
+  event.preventDefault();
 
-
-$(function () {
-
-  $('#btnDeleteEvent').on('click', function (events) {
-    URL = DOMAIN + "/events/" + ID;
-
-    var delID = -1;
-    for (var i = 0; i < events.length; i++) {
-      if (events[i] != null) {
-        if (events[i].id == ID) { delID = i; break; }
-      }
-    }
-
-    $.ajax({
-      method: "DELETE",
-      url: URL,
-      data: eventData,
-      success: function (xhr) {
-        if (xhr.status == 204) {
-          information("EVENT SUCCESSFULLY DELETED");
-          events[i] = null;
-        }
-      },
-    }).fail(function (fail) {
-      if (fail["status"] == 404) {
-        information("EVENT COULD NOT BE DELETED - EVENT NOT FOUND / ALREADY DELETED");
-      }
-      else {
-        information(fail["responseJSON"]["description"]);
-      }
-    });
-  })
-})
+  if($(this).attr("id"))
+  {
+    httpDelEvent($(this).attr("id").substr(2));
+  }
+});*/
