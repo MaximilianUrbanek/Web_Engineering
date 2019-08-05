@@ -1,5 +1,6 @@
 //updates the calendar view so that number of days in the month are correct
 function updateView() {
+  var events = AllEventList;
   var month = document.getElementById("months").value;
   var year = document.getElementById("years").value;
   if (month == "January" || month == "March" || month == "May" || month == "July" || month == "August" || month == "October" || month == "December") {
