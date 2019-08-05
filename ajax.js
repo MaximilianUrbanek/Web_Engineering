@@ -1,5 +1,9 @@
   
 $(function () {
+  showAllEvents();
+})
+
+function showAllEvents() {
   var Domain = "https://dhbw.cheekbyte.de/calendar/test"
   URL = Domain + "/events"
   var $events = $('#showEvents');
@@ -18,10 +22,9 @@ $(function () {
           </ul></li>
         `)
       });
-      AllEventList = events;
     }
   });
-})
+}
 
 function showDayEvents() {
   var Domain = "https://dhbw.cheekbyte.de/calendar/test"
@@ -50,61 +53,4 @@ function showDayEvents() {
     }
   });
 }
- 
-
-/*
-getAllEvents.done(function (done) {
-  console.log(done);
-});
-
-getAllEvents.fail(function (fail) {
-  console.log(fail);
-});
-
-$ ("#eventForm").submit(function(eventData){
-  alert("Handler for .submit() called.");
-  eventData.preventDefault()
-
-  var Title = $(Title"]')
-  var Location = $(Location"]')
-  var Organizer = $(Organizer"]')
-  var Start = $(Start"]')
-  var End = $(End"]')
-  var Status = $('select[name="formStatus"]')
-  var Allday = $(Allday"]')
-  var Webpage = $(Web"]')
-  var IMAGE = $(Image"]')
-
-  
-  
-  
-  var eventData = {
-    "title": Title,
-    "location": Location,
-    "organizer": Organizer,
-    "start": Start,
-    "end": End,
-    "status": Status,
-    "allday": Allday,
-    "webpage": Webpage,
-    "imageurl": IMAGE,
-  }
-  
-  $.ajax({
-    url: URL,
-    method: "POST",
-    contentType: false,
-    data: JSON.stringify(eventData),
-    dataType: "json"
-  })
-  .done(function (done) {
-    console.log("DONE: ");
-    console.log(done);
-  })
-  .fail(function (fail) {
-    console.log("FAIL: ");
-    console.log(fail);
-  });
-});
-*/
 

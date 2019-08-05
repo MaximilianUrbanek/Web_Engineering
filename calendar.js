@@ -1,5 +1,3 @@
-var AllEventList;
-
 function updateView() {
   var month = document.getElementById("months").value;
   var year = document.getElementById("years").value;
@@ -55,7 +53,8 @@ function changebackall() {
   }
   document.getElementById("chheading").innerHTML = "Future Events";
   document.getElementById("changebtns").innerHTML = "";
-  document.getElementById("changebody").innerHTML = AllEventList;
+  document.getElementById("changebody").innerHTML = "<ul id='showEvents'></ul>";
+  showAllEvents();
 }
 
 function addevent() {
@@ -152,12 +151,3 @@ function addevent() {
     });
   })
 }
-
-/*$("#btnDeleteEvent").on( "click", function(event) {
-  event.preventDefault();
-
-  if($(this).attr("id"))
-  {
-    httpDelEvent($(this).attr("id").substr(2));
-  }
-});*/
