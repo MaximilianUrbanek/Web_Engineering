@@ -90,53 +90,8 @@ function addevent() {
 
     $(function(){
       $('#formSubmit').on('click', function(){
-        console.log("create aufgerufen");
-        var Domain = "https://dhbw.cheekbyte.de/calendar/test"
-        URL = Domain + "/events"
-        var $events = $('#showEvents');
-  
-        var $Title = $('#title');
-        var $Location = $('#location');
-        var $Organizer = $('#organizer');
-        var $Start =$('#start');
-        var $End =$('#end');
-        var $Status = $('#status');
-        var $Allday = $('#allday');
-        var $Webpage = $('#webpage');
-        var $IMAGE = $('#imageurl');
-      
-        var eventData = {
-          title: $Title.val(),
-          location: $Location.val(),
-          organizer: $Organizer.val(),
-          start: $Start.val(),
-          end: $End.val(),
-          status: $Status.val(),
-          allday: $Allday.val(),
-          webpage: $Webpage.val(),
-          imageurl: $IMAGE.val(),
-        }
-        
-        $.ajax ({
-          type : 'POST',
-          url : URL,
-          data: eventData,
-          success: function(event) {
-            $events.append(`
-            <li><ul>
-              <li>Title: `+ event.title +`</li>
-              <li>Location: `+ event.location +`</li>
-              <li>Organizer: `+ event.organizer +`</li>
-              <li>Start: `+ event.start +`</li>
-              <li>End: `+ event.end +`</li>
-            </ul></li>
-          `)
-          },
-          error: function(){
-            alert("Irgendein Fehler")
-          }
-        })
-      });
+      alert("abc");
+    });
     })
 }
 
