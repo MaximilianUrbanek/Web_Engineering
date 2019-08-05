@@ -154,19 +154,27 @@ function addevent() {
 
 
 $(function () {
-  
-  var eventID = $('#').val();
 
-  $('#').on('click', function (events) {
+  $('#btnDeleteEvent').on('click', function (events) {
     URL = DOMAIN + "/events/" + eventID;
+
+    var delID = -1;
+	for(var i = 0 ; i < events.length ; i++)
+	{
+		if(events[i] != null)
+		{
+			if(events[i].id == ID) { delID = i ; break; }
+		}
+	}
 
     $.ajax({
       method: "DELETE",
       url: URL,
+      data: eventData,
       success: function (xhr) {
         if (xhr.status == 204) {
           information("EVENT SUCCESSFULLY DELETED");
-          EVENTS[i] = null;
+          events[i] = null;
         }
       },
     }).fail(function(fail) {
