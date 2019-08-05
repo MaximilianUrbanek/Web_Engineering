@@ -1,3 +1,4 @@
+//updates the calendar view so that number of days in the month are correct
 function updateView() {
   var month = document.getElementById("months").value;
   var year = document.getElementById("years").value;
@@ -20,6 +21,7 @@ function updateView() {
   }
 }
 
+//selects a day by highlighting it in calendar view and makes specific functions possible
 function dayclick(day) {
   var month = document.getElementById("months").value;
   if (month == "October" || month == "November" || month == "December") {
@@ -42,10 +44,10 @@ function dayclick(day) {
     <button id='changeback' onclick='changebackall()' class='fas fa-angle-left'></button>
     <button id='btnShow' class='far fa-eye' onclick='showDayEvents()'></button>
     <button id='addevent' onclick='addevent()' class='fas fa-calendar-plus'></button></div>`;
-  AllEventList = document.getElementById("changebody").innerHTML;
   document.getElementById("changebody").innerHTML = "<ul id='showEvents'></ul>";
 }
 
+//changes back to overview without reloading the page
 function changebackall() {
   var listel = document.getElementById("days").getElementsByTagName("LI");
   for (var i = 0; i < listel.length; i++) {
@@ -55,90 +57,4 @@ function changebackall() {
   document.getElementById("changebtns").innerHTML = "";
   document.getElementById("changebody").innerHTML = "<ul id='showEvents'></ul>";
   showAllEvents();
-}
-
-function addevent() {
-  AllEventList = document.getElementById("changebody").innerHTML;
-  document.getElementById("changebody").innerHTML = `
-    <form id="eventForm">
-    <ul id='neweventform'>
-        <li>
-            <input id='title' type='text' placeholder='Event Title' required class='eventinput'>
-        </li>
-        <li>
-            <input id='location' type='text' placeholder='Location' required class='eventinput'>
-        </li>
-        <li><input id='organizer' type='text' placeholder='Organizer' required class='eventinput'></li>
-        <script>
-          $("#formStart").datetimepicker({format:'Y-m-d H:i'}); 
-          $("#formEnd").datetimepicker({format:'Y-m-d H:i'});
-        </script>
-        <li>Start time: <input id='formStart' type='datetime-local' name='formStart' class='eventinput'></li>
-        <li>End time: <input id='formEnd' type='datetime-local' name='formEnd' class='eventinput'</li> 
-        <li>All day event? <select id='allday' class='eventinput'>
-          <option value="false">false</option>
-          <option value="true">true</option>
-      </select></li>
-        <li><select id='status' class='eventinput'>
-              <option>Busy</option>
-              <option>Free</option>
-          </select></li>
-        <li><input id='webpage' type='text' placeholder='Webpage' class='eventinput'></li>
-        <li><button id='formSubmit' class='eventinput' >Submit</button></li>
-    </ul>
-    </form>`;
-
-  $(function () {
-    $('#formSubmit').on('click', function (event) {
-      event.preventDefault();
-      var Domain = "https://dhbw.cheekbyte.de/calendar/test"
-      URL = Domain + "/events"
-      var $events = $('#showEvents');
-
-      var $Title = $('#title').val();
-      var $Location = $('#location').val();
-      var $Organizer = $('#organizer').val();
-      var $Start = $('input[name="formStart"]').val().replace(' ', 'T');
-      var $End = $('input[name="formEnd"]').val().replace(' ', 'T');
-      var $Status = $('#status').val();
-      var $Allday = $('#allday').val();
-      var $Webpage = $('#webpage').val();
-
-      console.log(eventData);
-
-      if($Allday == "true"){
-        $Start = $Start.substring(0, 11) + "00:00";
-        $End = $End.substring(0, 11) + "23:59";
-      }
-
-      if($Start > $End || $Organizer.indexOf("@") <= 0){
-        if($Start > $End){ alert("Start date must be before End date"); }
-        if($Organizer.indexOf("@") <= 0 )	{ alert("Organizer must be an e-mail-address - please include @"); }
-      } else {
-        var eventData = {
-          title: $Title,
-          location:  $Location,
-          organizer: $Organizer,
-          start: $Start,
-          end: $End,
-          status: $Status,
-          allday: false,
-          webpage: $Webpage,
-          extra: null
-        }
-        $.ajax({
-          type: 'POST',
-          url: URL,
-          dataType: "json",
-          data: JSON.stringify(eventData),
-          success: function (event) {
-            alert("Event added successfully :)")
-          },
-          error: function () {
-            alert("Some error has occured")
-          }
-        });
-      }
-    });
-  })
 }
