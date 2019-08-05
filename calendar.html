@@ -13,21 +13,22 @@
   <header>Calendar</header>
 
   <select id="months" onchange="updateView()">
-    <option value="January" id="01">January</option>
-    <option value="February" id="02">February</option>
-    <option value="March" id="03">March</option>
-    <option value="April" id="04">April</option>
-    <option value="May" id="05">May</option>
-    <option value="June" id="06">June</option>
-    <option value="July" id="07">July</option>
-    <option value="August" id="08">August</option>
-    <option value="September" id="09">September</option>
-    <option value="October" id="10">October</option>
-    <option value="November" id="11">November</option>
-    <option value="December" id="12">December</option>
+    <option value="January" id="m01">January</option>
+    <option value="February" id="m02">February</option>
+    <option value="March" id="m03">March</option>
+    <option value="April" id="m04">April</option>
+    <option value="May" id="m05">May</option>
+    <option value="June" id="m06">June</option>
+    <option value="July" id="m07">July</option>
+    <option value="August" id="m08">August</option>
+    <option value="September" id="m09">September</option>
+    <option value="October" id="m10">October</option>
+    <option value="November" id="m11">November</option>
+    <option value="December" id="m12">December</option>
   </select>
 
   <select id="years" onchange="updateView()">
+    <option value="2019">2019</option>
     <option value="2020">2020</option>
     <option value="2021">2021</option>
     <option value="2022">2022</option>
@@ -40,19 +41,19 @@
     <option value="2029">2029</option>
     <option value="2030">2030</option>
   </select>
-
+    <div id="ABCevent"></div>
   <div id="all">
     <div id="fullview">
       <ul id="days">
-        <li id="1" onclick="dayclick(id)">1</li>
-        <li id="2" onclick="dayclick(id)">2</li>
-        <li id="3" onclick="dayclick(id)">3</li>
-        <li id="4" onclick="dayclick(id)">4</li>
-        <li id="5" onclick="dayclick(id)">5</li>
-        <li id="6" onclick="dayclick(id)">6</li>
-        <li id="7" onclick="dayclick(id)">7</li>
-        <li id="8" onclick="dayclick(id)">8</li>
-        <li id="9" onclick="dayclick(id)">9</li>
+        <li id="01" onclick="dayclick(id)">1</li>
+        <li id="02" onclick="dayclick(id)">2</li>
+        <li id="03" onclick="dayclick(id)">3</li>
+        <li id="04" onclick="dayclick(id)">4</li>
+        <li id="05" onclick="dayclick(id)">5</li>
+        <li id="06" onclick="dayclick(id)">6</li>
+        <li id="07" onclick="dayclick(id)">7</li>
+        <li id="08" onclick="dayclick(id)">8</li>
+        <li id="09" onclick="dayclick(id)">9</li>
         <li id="10" onclick="dayclick(id)">10</li>
         <li id="11" onclick="dayclick(id)">11</li>
         <li id="12" onclick="dayclick(id)">12</li>
@@ -86,16 +87,19 @@
         </div>
       </div>
       <div id="changebtns">
-          <button id='btnShowAll' class='far fa-eye'></button>
       </div>
     </div>
   </div>
 
   <p id="selected" style="visibility: hidden"></p>
+  
 
   <script src="j-query.js"></script>
   <script src="ajax.js"></script>
   <script src="calendar.js"></script>
+  <link rel="stylesheet" type="text/css" href="./datetimepicker-master/jquery.datetimepicker.css"/>
+  <script src="./datetimepicker-master/build/jquery.datetimepicker.full.min.js"></script>
+  <script src="./datetimepicker-master/jquery.js"></script>
 </body>
 
 </html>
