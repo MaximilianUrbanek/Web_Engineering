@@ -6,8 +6,8 @@ $(function () {
   var $Title = $('#title');
   var $Location = $('#location');
   var $Organizer = $('#organizer');
-  //var $Start = $(document.getElementById(selected).innerHTML+'#start');
-  //var $End = $(document.getElementById(selected).innerHTML+'#end');
+  var $Start = $('#start');
+  var $End = $('#end');
   var $Status = $('#status');
   var $Allday = $('#allday');
   var $Webpage = $('#webpage');
@@ -16,9 +16,9 @@ $(function () {
   var eventData = {
     title: $Title.val(),
     location: $Location.val(),
-    organizer: $Organizer.val(),
-    //start: $Start.val(),
-    //end: $End.val(),
+    organizer: /*document.getElementById(selected).innerHTML+*/$Organizer.val(),
+    start: /*document.getElementById(selected).innerHTML+*/$Start.val(),
+    end: $End.val(),
     status: $Status.val(),
     allday: $Allday.val(),
     webpage: $Webpage.val(),
