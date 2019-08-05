@@ -134,3 +134,15 @@ select {
     font-size: 16px;
     color: rgb(48,33,39);
 }
+
+.shownEvents {
+    display: grid;
+    grid-template-columns: 85% 15%;
+    list-style-type: none;
+    margin: 4px;
+    background-color: rgb(255,232,232);
+    border: 1px solid  rgb(132,89,107);
+    border-radius: 3px;
+    font-size: 16px;
+    color: rgb(48,33,39);
+}

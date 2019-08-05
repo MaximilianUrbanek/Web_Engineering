@@ -13,15 +13,20 @@ function showAllEvents() {
     success: function(events) {
       $.each(events, function(i, event){
         $events.append(`
-          <li><ul>
-            <li>Title: `+ event.title +`<button id="btnDeleteEvent" class="fas fa-calendar-times"></button></li>
+          <li class="shownEvents"><ul>
+            <li>Title: `+ event.title +`</li>
             <li>Location: `+ event.location +`</li>
             <li>Organizer: `+ event.organizer +`</li>
             <li>Start: `+ event.start +`</li>
             <li>End: `+ event.end +`</li>
-          </ul></li>
+          </ul>
+          <button id="btnDeleteEvent" class="fas fa-calendar-times"></button>
+          </li>
         `)
       });
+      if($events.length > 3) {
+        ScrollElements(1);
+      }
     }
   });
 }
@@ -54,3 +59,7 @@ function showDayEvents() {
   });
 }
 
+function ScrollElements(startIndex) {
+  var EventsToShow;
+  var $events;
+}

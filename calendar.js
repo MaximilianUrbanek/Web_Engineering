@@ -133,15 +133,6 @@ function addevent() {
           data: JSON.stringify(eventData),
           success: function (event) {
             alert("Event added successfully :)")
-            $events.append(`
-              <li><ul>
-                <li>Title: `+ event.title + `</li>
-                <li>Location: `+ event.location + `</li>
-                <li>Organizer: `+ event.organizer + `</li>
-                <li>Start: `+ event.start + `</li>
-                <li>End: `+ event.end + `</li>
-              </ul></li>
-            `)
           },
           error: function () {
             alert("Some error has occured")
