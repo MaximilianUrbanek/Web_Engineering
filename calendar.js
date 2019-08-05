@@ -72,16 +72,19 @@ function addevent() {
         </li>
         <li><input id='organizer' type='text' placeholder='Organizer' required class='eventinput'></li>
         <script>
-          $("#formStart").datetimepicker({format:'Y-m-d'+"T"+'H:i'}); 
+          $("#formStart").datetimepicker({format:'Y-m-d H:i'}); 
           $("#formEnd").datetimepicker({format:'Y-m-d H:i'});
         </script>
-        <li>Start time: <input id='formStart' type='datetime-local' class='eventinput'></li>
-        <li>End time: <input id='formEnd' type='datetime-local' class='eventinput'</li> 
-        <li>All day event? <input id='allday' type='checkbox'></li>
+        <li>Start time: <input id='formStart' type='datetime-local' class='eventinput' name='formStart'></li>
+        <li>End time: <input id='formEnd' type='datetime-local' class='eventinput' name='formEnd'</li> 
+        <li>All day event? <select id="allday" class="eventinput">
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+          </select></li>
         <li><select id='status' class='eventinput'>
-                <option>Busy</option>
-                <option>Free</option>
-            </select></li>
+              <option>Busy</option>
+              <option>Free</option>
+          </select></li>
         <li><input id='webpage' type='text' placeholder='Webpage' class='eventinput'></li>
         <li><input id='imageurl' type='text' placeholder='Image-url' class='eventinput'></li>
         <li><button id='formSubmit' class='eventinput' >Submit</button></li>
@@ -95,27 +98,32 @@ function addevent() {
         URL = Domain + "/events"
         var $events = $('#showEvents');
         
-        var $Title = $('#title');
-        var $Location = $('#location');
-        var $Organizer = $('#organizer');
-        var $Start =$('#start');
-        var $End =$('#end');
-        var $Status = $('#status');
-        var $Allday = $('#allday');
-        var $Webpage = $('#webpage');
-        var $IMAGE = $('#imageurl');
-
+        var Title = $('#title').val();
+        var Location = $('#location').val();
+        var Organizer = $('#organizer').val();
+        var StartInput =$('#start').val();
+        var EndInput =$('#end').val();
+        var Status = $('#status').val();
+        var Allday = $('#allday').val();
+        var Webpage = $('#webpage').val();
+        alert("abc");
+        var Start = StartInput.replace("/\ /g", "T");
+	      var End   = EndInput.replace("/\ /g", "T");
+        alert("def");
         var eventData = {
-          title: $Title.val(),
-          location: $Location.val(),
-          organizer: $Organizer.val(),
-          start: $Start.val(),
-          end: $End.val(),
-          status: $Status.val(),
-          allday: $Allday.val(),
-          webpage: $Webpage.val(),
-          imageurl: $IMAGE.val(),
-        }
+          "title": Title,
+          "location": Location,
+          "organizer": Organizer,
+          "start": Start,
+          "end": End,
+          "status": Status,
+          "allday": Allday,
+          "webpage": Webpage,
+          "imageurl": null,
+          "categories": null,
+          "extra":null
+        };
+        
 
         document.getElementById("ABCevent").innerHTML = `<ul>
           <li>`+eventData.title+`</li> 
@@ -125,7 +133,6 @@ function addevent() {
           <li>`+eventData.end+`</li>
           <li>`+eventData.status+`</li>
           <li>`+eventData.webpage+`</li>
-          <li>`+eventData.imageurl+`</li>
         </ul>`;
 
         $.ajax ({
@@ -147,7 +154,7 @@ function addevent() {
             alert("Irgendein Fehler")
           }
         });
-        alert("def");
+        
       });
     })
 }
