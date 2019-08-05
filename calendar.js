@@ -94,10 +94,6 @@ function addevent() {
     $(function(){
       $('#formSubmit').on('click', function(){
         
-        var Domain = "https://dhbw.cheekbyte.de/calendar/test"
-        URL = Domain + "/events"
-        var $events = $('#showEvents');
-        
         var Title = $('#title').val();
         var Location = $('#location').val();
         var Organizer = $('#organizer').val();
@@ -123,11 +119,17 @@ function addevent() {
           "categories": null,
           "extra":null
         };
-        
-        $.ajax ({
-          type : 'POST',
+
+        var Domain = "https://dhbw.cheekbyte.de/calendar/test"
+        URL = Domain + "/events"
+        var $events = $('#showEvents');
+
+        var createEvent = $.ajax({
           url : URL,
+          method: "POST",
+          contentType: false,
           data: JSON.stringify(eventData),
+          dataType: "text",
           success: function(event) {
             alert("success")
             $events.append(`
@@ -143,7 +145,9 @@ function addevent() {
           error: function(){
             alert("Irgendein Fehler")
           }
-        });
+          }
+        );
+        alert("createEventvorbei");
         
       });
     })
