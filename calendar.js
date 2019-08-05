@@ -76,7 +76,10 @@ function addevent() {
         </script>
         <li>Start time: <input id='formStart' type='datetime-local' name='formStart' class='eventinput'></li>
         <li>End time: <input id='formEnd' type='datetime-local' name='formEnd' class='eventinput'</li> 
-        <li>All day event? <input id='allday' type='checkbox'></li>
+        <li>All day event? <select id='allday' class='eventinput'>
+          <option value="false">false</option>
+          <option value="true">true</option>
+      </select></li>
         <li><select id='status' class='eventinput'>
               <option>Busy</option>
               <option>Free</option>
@@ -93,49 +96,59 @@ function addevent() {
       URL = Domain + "/events"
       var $events = $('#showEvents');
 
-      var $Title = $('#title');
-      var $Location = $('#location');
-      var $Organizer = $('#organizer');
-      var $Start = $('input[name="formStart"]');
-      var $End = $('input[name="formEnd"]');
-      var $Status = $('#status');
-      var $Allday = $('#allday');
-      var $Webpage = $('#webpage');
-
-      var eventData = {
-        title: $Title.val(),
-        location:  $Location.val(),
-        organizer: $Organizer.val(),
-        start: $Start.val().replace(' ', 'T'),
-        end: $End.val().replace(' ', 'T'),
-        status: $Status.val(),
-        allday: false,
-        webpage: $Webpage.val(),
-        extra: null
-      }
+      var $Title = $('#title').val();
+      var $Location = $('#location').val();
+      var $Organizer = $('#organizer').val();
+      var $Start = $('input[name="formStart"]').val().replace(' ', 'T');
+      var $End = $('input[name="formEnd"]').val().replace(' ', 'T');
+      var $Status = $('#status').val();
+      var $Allday = $('#allday').val();
+      var $Webpage = $('#webpage').val();
 
       console.log(eventData);
-    
-      $.ajax({
-        type: 'POST',
-        url: URL,
-        dataType: "json",
-        data: JSON.stringify(eventData),
-        success: function (event) {
-          $events.append(`
-            <li><ul>
-              <li>Title: `+ event.title + `</li>
-              <li>Location: `+ event.location + `</li>
-              <li>Organizer: `+ event.organizer + `</li>
-              <li>Start: `+ event.start + `</li>
-              <li>End: `+ event.end + `</li>
-            </ul></li>
-          `)
-        },
-        error: function () {
-          alert("Some error has occured")
+
+      if($Allday == "true"){
+        $Start = $Start.substring(0, 11) + "00:00";
+        $End = $End.substring(0, 11) + "23:59";
+      }
+
+      if($Start > $End || $Organizer.indexOf("@") <= 0){
+        if($Start > $End){ alert("Start date must be before End date"); }
+        if($Organizer.indexOf("@") <= 0 )	{ alert("Organizer must be an e-mail-address - please include @"); }
+      } else {
+        var eventData = {
+          title: $Title,
+          location:  $Location,
+          organizer: $Organizer,
+          start: $Start,
+          end: $End,
+          status: $Status,
+          allday: false,
+          webpage: $Webpage,
+          extra: null
         }
-      });
+        $.ajax({
+          type: 'POST',
+          url: URL,
+          dataType: "json",
+          data: JSON.stringify(eventData),
+          success: function (event) {
+            alert("Event added successfully :)")
+            $events.append(`
+              <li><ul>
+                <li>Title: `+ event.title + `</li>
+                <li>Location: `+ event.location + `</li>
+                <li>Organizer: `+ event.organizer + `</li>
+                <li>Start: `+ event.start + `</li>
+                <li>End: `+ event.end + `</li>
+              </ul></li>
+            `)
+          },
+          error: function () {
+            alert("Some error has occured")
+          }
+        });
+      }
     });
   })
 }
