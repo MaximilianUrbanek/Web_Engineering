@@ -101,15 +101,15 @@ function addevent() {
         var Title = $('#title').val();
         var Location = $('#location').val();
         var Organizer = $('#organizer').val();
-        var StartInput =$('#start').val();
-        var EndInput =$('#end').val();
+        var StartInput = $('input[name="formStart"]').val();
+	      var EndInput = $('input[name="formEnd"]').val();
         var Status = $('#status').val();
         var Allday = $('#allday').val();
         var Webpage = $('#webpage').val();
-        alert("abc");
-        var Start = StartInput.replace("/\ /g", "T");
-	      var End   = EndInput.replace("/\ /g", "T");
-        alert("def");
+        
+        var Start = StartInput.replace(" ", "T");
+	      var End   = EndInput.replace(" ", "T");
+        
         var eventData = {
           "title": Title,
           "location": Location,
@@ -124,22 +124,12 @@ function addevent() {
           "extra":null
         };
         
-
-        document.getElementById("ABCevent").innerHTML = `<ul>
-          <li>`+eventData.title+`</li> 
-          <li>`+eventData.location+`</li>
-          <li>`+eventData.organizer+`</li>
-          <li>`+eventData.start+`</li>
-          <li>`+eventData.end+`</li>
-          <li>`+eventData.status+`</li>
-          <li>`+eventData.webpage+`</li>
-        </ul>`;
-
         $.ajax ({
           type : 'POST',
           url : URL,
-          data: eventData,
+          data: JSON.stringify(eventData),
           success: function(event) {
+            alert("success")
             $events.append(`
             <li><ul>
               <li>Title: `+ event.title +`</li>
@@ -148,7 +138,7 @@ function addevent() {
               <li>Start: `+ event.start +`</li>
               <li>End: `+ event.end +`</li>
             </ul></li>
-          `)
+            `)
           },
           error: function(){
             alert("Irgendein Fehler")
