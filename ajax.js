@@ -10,7 +10,7 @@ $(function () {
       $.each(events, function(i, event){
         $events.append(`
           <li><ul>
-            <li>Title: `+ event.title +`</li>
+            <li>Title: `+ event.title +`<button id="btnDeleteEvent" class="fas fa-calendar-times"></button></li>
             <li>Location: `+ event.location +`</li>
             <li>Organizer: `+ event.organizer +`</li>
             <li>Start: `+ event.start +`</li>

@@ -60,7 +60,6 @@ function changebackall() {
 
 function addevent() {
   AllEventList = document.getElementById("changebody").innerHTML;
-
   document.getElementById("changebody").innerHTML = `
     <form id="eventForm">
     <ul id='neweventform'>
@@ -79,9 +78,9 @@ function addevent() {
         <li>End time: <input id='formEnd' type='datetime-local' class='eventinput'</li> 
         <li>All day event? <input id='allday' type='checkbox'></li>
         <li><select id='status' class='eventinput'>
-                <option>Busy</option>
-                <option>Free</option>
-            </select></li>
+              <option>Busy</option>
+              <option>Free</option>
+          </select></li>
         <li><input id='webpage' type='text' placeholder='Webpage' class='eventinput'></li>
         <li><input id='imageurl' type='text' placeholder='Image-url' class='eventinput'></li>
         <li><button id='formSubmit' class='eventinput' >Submit</button></li>
