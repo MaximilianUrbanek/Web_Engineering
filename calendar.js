@@ -129,7 +129,7 @@ function addevent() {
           method: "POST",
           contentType: false,
           data: JSON.stringify(eventData),
-          dataType: "text",
+          dataType: "json",
           success: function(event) {
             alert("success")
             $events.append(`
@@ -142,12 +142,13 @@ function addevent() {
             </ul></li>
             `)
           },
-          error: function(){
-            alert("Irgendein Fehler")
-          }
+          error: function(xhr, textStatus, error){
+            console.log(xhr.statusText);
+            console.log(textStatus);
+            console.log(error);
+        }
           }
         );
-        alert("createEventvorbei");
         
       });
     })
