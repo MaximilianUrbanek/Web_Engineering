@@ -5,7 +5,7 @@ $(function () {
 
 //sends a get request and shows all the retrieved events
 function showAllEvents() {
-  var Domain = "https://dhbw.cheekbyte.de/calendar/ourTestUser"
+  var Domain = "https://dhbw.cheekbyte.de/calendar/TestUser"
   URL = Domain + "/events"
   var $events = $('#showEvents');
   $.ajax({
@@ -37,7 +37,7 @@ function showAllEvents() {
 
 //sends a get request and shows all events starting on the selected day
 function showDayEvents() {
-  var Domain = "https://dhbw.cheekbyte.de/calendar/ourTestUser"
+  var Domain = "https://dhbw.cheekbyte.de/calendar/TestUser"
   URL = Domain + "/events"
   var $events = $('#showEvents');
   $.ajax({
@@ -74,7 +74,7 @@ function showDayEvents() {
 
 //deleting the selected event
 function deleteEvent(id) {
-  var Domain = "https://dhbw.cheekbyte.de/calendar/ourTestUser";
+  var Domain = "https://dhbw.cheekbyte.de/calendar/TestUser";
   URL = Domain + "/events/" + id;
   $.ajax({
     type:"DELETE",
@@ -123,7 +123,7 @@ function updateEvent(id){
   $(function () {
     $('#updateSubmit').on('click', function (event) {
       event.preventDefault();
-      var Domain = "https://dhbw.cheekbyte.de/calendar/ourTestUser"
+      var Domain = "https://dhbw.cheekbyte.de/calendar/TestUser"
       URL = Domain + "/events/" + id
       var $events = $('#showEvents');
 
@@ -211,7 +211,7 @@ function addevent() {
   $(function () {
     $('#formSubmit').on('click', function (event) {
       event.preventDefault();
-      var Domain = "https://dhbw.cheekbyte.de/calendar/ourTestUser"
+      var Domain = "https://dhbw.cheekbyte.de/calendar/TestUser"
       URL = Domain + "/events"
       var $events = $('#showEvents');
 
